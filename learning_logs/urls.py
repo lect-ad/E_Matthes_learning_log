@@ -12,4 +12,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     # Page with all the topics created by user.
     path('topics/', views.topics, name='topics'),
+    path('topics/<int:topic_id>/', views.topic, name='topic')
 ]
