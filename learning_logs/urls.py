@@ -10,4 +10,6 @@ app_name = 'learning_logs'
 urlpatterns = [
     # Home page.
     path('', views.index, name='index'),
+    # Page with all the topics created by user.
+    path('topics/', views.topics, name='topics'),
 ]
