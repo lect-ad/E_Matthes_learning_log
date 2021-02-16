@@ -1,8 +1,8 @@
 {% extends "learning_logs/base.html" %}
 
 {% block page_header %}
-    <div class="jumbotron">
-        <h1 class="display-3">Track your learning.</h1>
+    <div class="jumbotron" style="background-color: #f1faee;">
+        <h1 class="display-3" >Track your learning.</h1>
 
         <p class="lead">
             Create your own Learning Log. Write down interesting and important facts
@@ -10,7 +10,8 @@
         </p>
         <p class="lead">Stay tuned for exploring new exciting things!</p>
 
-        <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+        <a class="btn btn-lg btn-dark" style="background-color: #457b9d;"
+           href="{% url 'users:register' %}"
            role="button">Register &raquo;</a>
     </div>
 {% endblock page_header %}

@@ -2,7 +2,8 @@
 {% load bootstrap4 %}
 
 {% block page_header %}
-    <h4><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h4>
+    <h4><a style="color: #457b9d;" href="{% url 'learning_logs:topic' topic.id %}">
+        {{ topic }}</a></h4>
 {% endblock page_header %}
 
 {% block content %}
@@ -11,7 +12,8 @@
         {% csrf_token %}
         {% bootstrap_form form %}
         {% buttons %}
-            <button name="submit" class="btn btn-primary">Add entry</button>
+            <button style="background-color: #457b9d;" name="submit"
+                    class="btn btn-primary">Add entry</button>
         {% endbuttons %}
     </form>
 
