@@ -25,8 +25,7 @@ def topic(request, topic_id):
     """Shows all the entries for a certain topic."""
     topic = Topic.objects.get(id=topic_id)
 
-    if topic.owner != request.user:
-        raise Http404
+    check_topic_owner(request, topic)
 
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
@@ -53,6 +52,9 @@ def new_topic(request):
 def new_entry(request, topic_id):
     """Defines new entry for a certain topic."""
     topic = Topic.objects.get(id=topic_id)
+
+    check_topic_owner(request, topic)
+
     if request.method != 'POST':
         form = EntryForm()
     else:
@@ -72,8 +74,7 @@ def edit_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
 
-    if topic.owner != request.user:
-        raise Http404
+    check_topic_owner(request, topic)
 
     if request.method != 'POST':
         form = EntryForm(instance=entry)
@@ -84,3 +85,9 @@ def edit_entry(request, entry_id):
             return redirect('learning_logs:topic', topic_id=topic.id)
     context = {'form': form, 'topic': topic, 'entry': entry}
     return render(request, 'learning_logs/edit_entry.html', context)
+
+
+def check_topic_owner(request, topic):
+    """Checks if topic was created by current user."""
+    if topic.owner != request.user:
+        raise Http404
